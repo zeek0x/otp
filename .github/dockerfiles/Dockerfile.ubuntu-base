@@ -21,7 +21,7 @@ RUN apt-get update && apt-get -y upgrade && \
     ${INSTALL_LIBS} && \
     for lib in ${EXTRA_LIBS}; do apt-get install -y ${lib}; done && \
     sed -i 's@# en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen && locale-gen && \
-    update-alternatives --set wx-config /usr/lib/x86_64-linux-gnu/wx/config/gtk3-unicode-3.0)
+    update-alternatives --set wx-config /usr/lib/x86_64-linux-gnu/wx/config/gtk3-unicode-3.0
 
 ## EXTRA_LIBS are installed using a for loop because of bugs in the erlang-doc deb package
 
