@@ -6,18 +6,18 @@ FROM $BASE
 
 USER root
 
-
 ENV INSTALL_LIBS="zlib1g-dev libncurses5-dev libssl-dev unixodbc-dev libsctp-dev lksctp-tools libgmp3-dev libwxbase3.0-dev libwxgtk3.0-gtk3-dev libwxgtk-webview3.0-gtk3-dev"
 
 ARG EXTRA_LIBS="erlang erlang-doc"
 
-ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-RUN whoami && echo $DEBIAN_FRONTEND
+# For reinstall apache2
+RUN apt -y remove --purge apache2 && \
+    apt -y autoremove && apt -y autoclean
 
 RUN apt-get update && apt-get -y upgrade && \
-    apt-get install -y \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
     build-essential m4 autoconf fop xsltproc \
     unixodbc odbc-postgresql postgresql \
     tzdata ssh openssh-server groff-base sudo gdb apache2 bind9 nsd expect vsftpd python \
