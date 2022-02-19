@@ -18,6 +18,7 @@ RUN apt -y remove --purge apache2 && \
 
 RUN apt-get update && apt-get -y upgrade && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" \
     build-essential m4 autoconf fop xsltproc \
     unixodbc odbc-postgresql postgresql \
     tzdata ssh openssh-server groff-base sudo gdb apache2 bind9 nsd expect vsftpd python \
